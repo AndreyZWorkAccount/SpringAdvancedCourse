@@ -1,0 +1,47 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+		 #parse("/WEB-INF/fragments/_login.vm")
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<hr>
+<h4>Add order:</h4>
+<form action="./bookTicket" method="post">
+  User ID: <input type="text" name="userId"><p>
+  Event ID: <input type="text" name="eventId"><p>
+  Seat: <input type="text" name="seat"><p>
+  #parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Submit">
+</form>
+<hr>
+<h4>Orders list:</h4>
+<table class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>user</td>
+    <td>event</td>
+    <td>seat</td>
+    <td>price</td>
+   </tr>
+#foreach($order in $orders)
+   <tr>
+  	<td>$order.id</td>
+    <td>$order.user</td>
+    <td>$order.event</td>
+    <td>$order.seat</td>
+    <td>$order.price</td>
+   </tr>
+#end
+
+</table>
+<p>
+<a href="./all" class="button">Refresh</a>
+<hr>
+<form action="./clear" method="get">
+  #parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Delete all records">
+</form>
+
+
+</div>

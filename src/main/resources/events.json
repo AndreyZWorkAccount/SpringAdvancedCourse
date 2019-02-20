@@ -1,0 +1,146 @@
+[
+  {
+    "auditorium": {
+      "id": 1501,
+      "name": "auditoriumBig",
+      "seatsCount": 100,
+      "vipSeats": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    "event": {
+      "name": "Event01",
+      "startDate": "Jan 2, 2015 12:00:00 AM",
+      "endDate": "Jan 2, 2015 12:00:00 AM",
+      "price": 200,
+      "rating": "HIGH"
+    }
+  },
+  {
+    "auditorium": {
+      "id": 1501,
+      "name": "auditoriumBig",
+      "seatsCount": 100,
+      "vipSeats": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    "event": {
+      "name": "Event02",
+      "startDate": "Jan 3, 2015 12:00:00 AM",
+      "endDate": "Jan 3, 2015 12:00:00 AM",
+      "price": 200,
+      "rating": "HIGH"
+    }
+  },
+  {
+    "auditorium": {
+      "id": 1501,
+      "name": "auditoriumBig",
+      "seatsCount": 100,
+      "vipSeats": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    "event": {
+      "name": "Event03",
+      "startDate": "Jan 4, 2015 12:00:00 AM",
+      "endDate": "Jan 4, 2015 12:00:00 AM",
+      "price": 200,
+      "rating": "HIGH"
+    }
+  },
+  {
+    "auditorium": {
+      "id": 1501,
+      "name": "auditoriumBig",
+      "seatsCount": 100,
+      "vipSeats": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40
+      ]
+    },
+    "event": {
+      "name": "Event04",
+      "startDate": "Jan 5, 2015 12:00:00 AM",
+      "endDate": "Jan 5, 2015 12:00:00 AM",
+      "price": 200,
+      "rating": "HIGH"
+    }
+  }
+]

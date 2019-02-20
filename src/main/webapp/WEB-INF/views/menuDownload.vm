@@ -1,0 +1,15 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+ 	   #parse("/WEB-INF/fragments/_login.vm")
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<hr>
+<h4>Download all orders in PDF</h4>
+<form action="./orders" method="get">
+#parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button"  value="Download">
+</form>
+
+</div>

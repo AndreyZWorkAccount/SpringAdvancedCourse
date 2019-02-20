@@ -1,0 +1,63 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+	   #parse("/WEB-INF/fragments/_login.vm")
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<hr>
+<h4>Upload auditoriums from JSON:</h4>
+<form action="./upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data" method="post">
+<p>
+Please specify a file:<br>
+<input type="file" name="file" size="40">
+</p>
+#parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Submit">
+</form>
+<hr>
+<h4>Auditorium list:</h4>
+<table  class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>name</td>
+    <td>seatsCount</td>
+    <td>vipSeats</td>
+   </tr>
+#foreach($auditorium in $auditoriums)
+   <tr>
+  	<td>$auditorium.id</td>
+    <td>$auditorium.name</td>
+    <td>$auditorium.seatsCount</td>
+    <td>$auditorium.vipSeats</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./all" class="button">Refresh</a>
+<hr>
+<h4>Schedule:</h4>
+<table  class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>auditorium</td>
+    <td>event</td>
+   </tr>
+#foreach($schedule in $schedules)
+   <tr>
+  	<td>$schedule.id</td>
+    <td>$schedule.auditorium</td>
+    <td>$schedule.event</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./schedule" class="button">Refresh</a>
+<hr>
+<form action="./clear" method="get">
+#parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit"  class="button" value="Delete all records">
+</form>
+
+
+</div>

@@ -1,0 +1,67 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+	   #parse("/WEB-INF/fragments/_login.vm")
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<hr>
+<h4>Upload events from JSON:</h4>
+<form action="./upload?${_csrf.parameterName}=${_csrf.token}" method="post" enctype="multipart/form-data" method="post">
+<p>
+Please specify a file:<br>
+<input type="file" name="file" size="40">
+</p>
+#parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Submit">
+</form>
+<hr>
+<h4>Events list:</h4>
+<table class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>name</td>
+    <td>startDate</td>
+    <td>endDate</td>
+    <td>price</td>
+    <td>rating</td>
+    <td>ticketPrice</td>
+   </tr>
+#foreach($event in $events)
+   <tr>
+  	<td>$event.id</td>
+    <td>$event.name</td>
+    <td>$event.startDate</td>
+    <td>$event.endDate</td>
+    <td>$event.price</td>
+    <td>$event.rating</td>
+    <td>$event.ticketPrice</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./all" class="button">Refresh</a>
+<hr>
+<h4>Statistics:</h4>
+<table class="item_table">
+   <tr>
+  	<td>value</td>
+    <td>name</td>
+    <td>count</td>
+   </tr>
+#foreach($stat in $stats)
+   <tr>
+  	<td>$stat.value</td>
+    <td>$stat.name</td>
+    <td>$stat.count</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./statistic" class="button">Refresh</a>
+<hr>
+<form action="./clear" method="get">
+#parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Delete all records">
+</form>
+</div>

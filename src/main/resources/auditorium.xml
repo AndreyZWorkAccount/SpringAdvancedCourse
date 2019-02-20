@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+ 		http://www.springframework.org/schema/beans
+ 		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+ 		http://www.springframework.org/schema/util
+ 		http://www.springframework.org/schema/util/spring-util-3.2.xsd
+ 		http://www.springframework.org/schema/context
+  		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<util:list id="auditoriumsList" value-type="com.epam.spring.core.model.Auditorium">
+		<ref bean="Auditorium1" />
+		<ref bean="Auditorium2" />
+		<ref bean="Auditorium3" />
+	</util:list>
+	
+	<bean id="Auditorium1" class="com.epam.spring.core.model.Auditorium"
+		p:id="${auditorium1.id}" p:name="${auditorium1.name}" p:seatsCount="${auditorium1.seatsCount}"
+		p:vipSeats="#{T(java.util.Arrays).asList('${auditorium1.vipSeats}')}" />
+
+	<bean id="Auditorium2" class="com.epam.spring.core.model.Auditorium"
+		p:id="${auditorium2.id}" p:name="${auditorium2.name}" p:seatsCount="${auditorium2.seatsCount}"
+		p:vipSeats="#{T(java.util.Arrays).asList('${auditorium2.vipSeats}')}" />
+
+	<bean id="Auditorium3" class="com.epam.spring.core.model.Auditorium"
+		p:id="${auditorium3.id}" p:name="${auditorium3.name}" p:seatsCount="${auditorium3.seatsCount}"
+		p:vipSeats="#{T(java.util.Arrays).asList('${auditorium3.vipSeats}')}" />
+
+</beans>

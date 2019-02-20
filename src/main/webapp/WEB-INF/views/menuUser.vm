@@ -1,0 +1,98 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+	 #parse("/WEB-INF/fragments/_login.vm")
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<hr>
+<h4>Add user:</h4>
+<form action="./add" method="post">
+  Name: <input type="text" name="name"><p>
+  Email: <input type="text" name="email"><p>
+  Birthday (date): <input type="date" name="birthday"><p>
+  Password : <input type="password" name="password"><p>
+  Role : <select multiple name="role">
+   #foreach($role in $roles)
+   <option value="$role">$role</option>
+   #end
+   </select><p>
+   #parse("/WEB-INF/fragments/_token.vm")
+   Account: <input type="text" name="account"><p>   
+  <input type="submit" class="button" value="Submit">
+</form>
+<hr>
+<h4>User list:</h4>
+<table  class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>name</td>
+    <td>email</td>
+    <td>birthday</td>
+    <td>password</td>
+    <td>roles</td>
+    <td>account</td>
+   </tr>
+#foreach($userAcc in $userAccs)
+   <tr>
+  	<td>$userAcc.user.id</td>
+    <td>$userAcc.user.name</td>
+    <td>$userAcc.user.email</td>
+    <td>$userAcc.user.birthday</td>
+    <td>$userAcc.user.password</td>
+    <td>$userAcc.user.roles</td>
+    <td>$userAcc.account</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./all" class="button">Refresh</a>
+<hr>
+<h4>Statistics:</h4>
+<table  class="item_table">
+   <tr>
+  	<td>value</td>
+    <td>name</td>
+    <td>count</td>
+   </tr>
+#foreach($stat in $stats)
+   <tr>
+  	<td>$stat.value</td>
+    <td>$stat.name</td>
+    <td>$stat.count</td>
+   </tr>
+#end
+</table>
+<p>
+<a href="./statistic" class="button">Refresh</a>
+<hr>
+<h4>Booked tickets for:</h4>
+<table  class="item_table">
+   <tr>
+  	<td>id</td>
+    <td>event</td>
+    <td>seat</td>
+    <td>price</td> 
+   </tr>
+#foreach($order in $orders)
+   <tr>
+  	<td>$order.id</td>
+    <td>$order.event</td>
+    <td>$order.seat</td>
+    <td>$order.price</td> 
+   </tr>
+#end
+</table>
+<p>
+<form action="./bookedTickets" method="get">
+  User id: <input type="text" name="id"><p>
+  #parse("/WEB-INF/fragments/_token.vm")
+  <input type="submit" class="button" value="Submit">
+</form>
+<hr>
+<form action="./clear" method="get">
+  <input type="submit" class="button" value="Delete all records">
+</form>
+
+
+</div>

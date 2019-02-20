@@ -1,0 +1,9 @@
+ #parse("/WEB-INF/fragments/_styles.vm")
+<div>
+       #parse("/WEB-INF/fragments/_menu.vm")
+</div>
+<div>
+<h3>$status</h3>
+<div>
+$exception
+</div>

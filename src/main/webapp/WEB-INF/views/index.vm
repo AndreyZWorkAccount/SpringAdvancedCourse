@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="./resources/css/menu.css" type="text/css" /> 
+<link rel="stylesheet" href="./resources/css/buttons.css" type="text/css" /> 
+<link rel="stylesheet" href="./resources/css/table.css" type="text/css" /> 
+<div>
+<table class="login_table">
+	<tr>
+	<td>You login as: $login</td>
+	<td>You role: $login_roles</td>
+	<td>
+	<form action="./login" method="post">
+	  #parse("/WEB-INF/fragments/_token.vm")
+	    <input type="submit" value="login">
+	</form></td>
+	<td>
+	<form action="./logout" method="post">
+	  #parse("/WEB-INF/fragments/_token.vm")
+	    <input type="submit" value="logout">
+	</form>
+	</td>
+	</tr>
+</table>
+</div>
+<div>
+   <div class="menu">
+       <table class="menu_table">
+       <tr align="center" >
+       <td><a href="./download/menu">Download</a></td>
+       <td><a href="./auditorium/menu">Auditorium</a></td>
+       <td><a href="./event/menu">Event</a></td>
+       <td><a href="./order/menu">Order</a></td>
+       <td><a href="./user/menu">User</a></td>
+       </tr>
+       </table>
+   </div>
+<h1>Welcome</h1>
+
+</div>
