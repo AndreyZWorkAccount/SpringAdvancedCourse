@@ -18,7 +18,7 @@ public class DefaultHandlerException implements HandlerExceptionResolver {
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler,
             Exception ex) {
        ModelAndView mav = new ModelAndView();
-       mav.addObject("status", STATUS_LINE + "Ooops, we have some problems...");
+       mav.addObject("status", STATUS_LINE + "Something went wrong...");
        mav.addObject("exception", ex);
        mav.setViewName(VIEW);
        return mav;

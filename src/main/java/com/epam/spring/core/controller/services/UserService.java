@@ -13,14 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.epam.spring.core.controller.IUserService;
 import com.epam.spring.core.dao.DiscountCounterDAO;
 import com.epam.spring.core.dao.OrderDAO;
-import com.epam.spring.core.dao.UserAccountDAO;
 import com.epam.spring.core.dao.UserDAO;
 import com.epam.spring.core.model.Counter;
 import com.epam.spring.core.model.Event;
 import com.epam.spring.core.model.Order;
-import com.epam.spring.core.model.Role;
 import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 
 
 public class UserService implements IUserService{
@@ -37,24 +34,17 @@ public class UserService implements IUserService{
 	@Qualifier("DiscountCounterDAODB")
 	DiscountCounterDAO counterDAO;
 	
-    @Autowired
-    @Qualifier("UserAccountDAODB")
-    UserAccountDAO userAccountDAO;
-	
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public User add(String name, String email, Date birthday, String password, String roles, int account){
-        User user = new User(name, email, birthday, password, roles);
+	public User add(String name, String email, Date birthday){
+        User user = new User(name, email, birthday);
         user = (userDAO.add(user)) ? userDAO.findByName(user.getName()) : null;
-        UserAccount userAccount = new UserAccount(user, account);
-        userAccountDAO.add(userAccount);
         return user;
     }
 	
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
-	public boolean add(User user, int account){
+	public boolean add(User user){
 	    user = (userDAO.add(user)) ? userDAO.findByName(user.getName()):null;
-	    UserAccount userAccount = new UserAccount(user, account);
-	    userAccountDAO.add(userAccount);	    
+
 	    return true;
 	}
 	
@@ -77,11 +67,6 @@ public class UserService implements IUserService{
 	
 	
     @Override
-    public List<UserAccount> getAllAccount() {
-        return userDAO.getAllAccount();
-    }
-
-    @Override
     public User getById(int id) {
         return userDAO.findByID(id);
     }
@@ -91,12 +76,5 @@ public class UserService implements IUserService{
         userDAO.clear();
     }
 
-	@Override
-	public List<Role> getRoles() {
-		List<Role> roles = new LinkedList<>();
-		roles = Arrays.asList(Role.values());
-		return roles;
-	}
-    
     
 }

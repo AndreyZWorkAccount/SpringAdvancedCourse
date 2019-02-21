@@ -21,7 +21,7 @@ public class EventDAODB implements EventDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
     
-    private static final String ADD_EVENT= "INSERT INTO EVENTS (name, startdate, enddate, price, rating, ticketPrice) VALUES (?,?,?,?,?,?)";
+    private static final String ADD_EVENT= "INSERT INTO EVENTS (name, startdate, enddate, price, rating) VALUES (?,?,?,?,?,?)";
     
     private static final String REMOVE_EVENT = "DELETE FROM EVENTS WHERE name=? and startdate=? and enddate=?";
     
@@ -49,8 +49,7 @@ public class EventDAODB implements EventDAO {
         try {
             return (jdbcTemplate.update(ADD_EVENT, event.getName(),
                     ClassCastUtil.getDateUtilToSQL(event.getStartDate()),
-                    ClassCastUtil.getDateUtilToSQL(event.getEndDate()), event.getPrice(), event.getRating().toString(),
-                    event.getTicketPrice()) > 0);
+                    ClassCastUtil.getDateUtilToSQL(event.getEndDate()), event.getPrice(), event.getRating().toString()  ) > 0);
         } catch (DataAccessException e) {
             return false;
         }
@@ -73,7 +72,7 @@ public class EventDAODB implements EventDAO {
             return (jdbcTemplate.update(UPDATE_EVENT, event.getName(),
                     ClassCastUtil.getDateUtilToSQL(event.getStartDate()),
                     ClassCastUtil.getDateUtilToSQL(event.getEndDate()), event.getPrice(), event.getRating().toString(),
-                    event.getTicketPrice(), event.getId()) > 0);
+                    event.getId()) > 0);
         } catch (DataAccessException e) {
             return false;
         }
@@ -116,7 +115,6 @@ public class EventDAODB implements EventDAO {
             event.setStartDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("startdate")));
             event.setEndDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("enddate")));
             event.setPrice(rs.getInt("price"));
-            event.setTicketPrice(rs.getInt("ticketprice"));
             event.setRating(Rating.valueOf(rs.getString("rating")));
             return event;
         }

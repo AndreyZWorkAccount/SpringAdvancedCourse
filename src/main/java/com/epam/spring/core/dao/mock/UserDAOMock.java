@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 
 import com.epam.spring.core.dao.UserDAO;
 import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 
 @Component(value = "UserDAOMock")
 public class UserDAOMock implements UserDAO {
@@ -77,11 +76,5 @@ public class UserDAOMock implements UserDAO {
         
     }
 
-    @Override
-    public List<UserAccount> getAllAccount() {
-        // TODO Auto-generated method stub
-        return null;
-    }
 
-    
 }

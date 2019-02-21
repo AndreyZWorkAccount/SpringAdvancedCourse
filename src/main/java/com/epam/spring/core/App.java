@@ -16,12 +16,10 @@ import com.epam.spring.core.model.Order;
 import com.epam.spring.core.model.Rating;
 import com.epam.spring.core.model.Schedule;
 import com.epam.spring.core.model.User;
-import com.epam.spring.advanced.util.WebUtil;
 import com.epam.spring.core.controller.IAuditoriumService;
 import com.epam.spring.core.controller.IBookingService;
 import com.epam.spring.core.controller.ICounterService;
 import com.epam.spring.core.controller.IEventService;
-import com.epam.spring.core.controller.IUserAccountService;
 import com.epam.spring.core.controller.IUserService;
 
 public class App {
@@ -32,9 +30,8 @@ public class App {
         IUserService userService = (IUserService) ctx.getBean("UserService");
         IBookingService bookingService = (IBookingService) ctx.getBean("BookingService");
         ICounterService counterService = (ICounterService) ctx.getBean("CounterService");
-        IUserAccountService userAccountService = (IUserAccountService) ctx.getBean("UserAccountService");
-        
-        init( auditoriumService, eventService, userService,  bookingService, counterService, userAccountService);
+
+        init( auditoriumService, eventService, userService,  bookingService, counterService);
        
         createSchedule(ctx, eventService, auditoriumService);
         printSchedule(auditoriumService);
@@ -48,13 +45,12 @@ public class App {
 
     
     private static void init(IAuditoriumService auditoriumService, IEventService eventService, IUserService userService,
-            IBookingService bookingService, ICounterService counterService,IUserAccountService userAccountService) {
+            IBookingService bookingService, ICounterService counterService) {
         auditoriumService.clear();
         eventService.clear();
         userService.clear();
         bookingService.clear();
         counterService.clear();
-        userAccountService.clear();
         if (auditoriumService.getAll() == null || auditoriumService.getAll().size() == 0) {
             auditoriumService.add(auditoriumService.getAuditoriums().get(0));
             auditoriumService.add(auditoriumService.getAuditoriums().get(1));
@@ -67,8 +63,8 @@ public class App {
         String msgUser = "Can't create user: ";
         String msgOrder = "Can't create order: ";
         DateTime birthday = new DateTime(2015, 1, 1, 0, 0, 0);
-        User user = new User("user1", "User1@mail.com", birthday.toDate(),WebUtil.getMd5Password("user"),"BOOKING_MANAGER");
-        if (userService.add(user, 1000)) {
+        User user = new User("user1", "User1@mail.com", birthday.toDate());
+        if (userService.add(user)) {
             Event event = eventService.getAll().get(0);
             printText("Event: ", event.getName());
             printText("price default: ", event.getPrice());
@@ -82,8 +78,8 @@ public class App {
             printError(msgUser, user);
         }
 
-        user = new User("user2", "User2@mail.com", new Date(),WebUtil.getMd5Password("user"),"REGISTERED_USER");
-        if (userService.add(user,2000)) {
+        user = new User("user2", "User2@mail.com", new Date());
+        if (userService.add(user)) {
             Event event = eventService.getAll().get(0);
             printText("Event: ", event.getName());
             printText("price default: ", event.getPrice());
@@ -105,8 +101,8 @@ public class App {
             printError(msgUser, user);
         }
         
-        user = new User("user", "User23@mail.com", new Date(),WebUtil.getMd5Password("user"),"REGISTERED_USER,BOOKING_MANAGER");
-        userService.add(user,9999);
+        user = new User("user", "User23@mail.com", new Date());
+        userService.add(user);
     }
 
     private static void printOrders(IBookingService bookingService) {
@@ -132,7 +128,6 @@ public class App {
         event.setEndDate(endDate.toDate());
         event.setPrice(200);
         event.setRating(Rating.HIGH);
-        event.setTicketPrice(0);
         Schedule schedule = new Schedule();
         schedule.setEvent(event);
         schedule.setAuditorium(listAud.get(0));
@@ -147,7 +142,6 @@ public class App {
         event.setEndDate(endDate.toDate());
         event.setPrice(200);
         event.setRating(Rating.HIGH);
-        event.setTicketPrice(0);
         schedule = new Schedule();
         schedule.setEvent(event);
         schedule.setAuditorium(listAud.get(0));
@@ -163,7 +157,6 @@ public class App {
         event.setEndDate(endDate.toDate());
         event.setPrice(200);
         event.setRating(Rating.HIGH);
-        event.setTicketPrice(0);
         schedule = new Schedule();
         schedule.setEvent(event);
         schedule.setAuditorium(listAud.get(0));
@@ -179,7 +172,6 @@ public class App {
         event.setEndDate(endDate.toDate());
         event.setPrice(200);
         event.setRating(Rating.HIGH);
-        event.setTicketPrice(0);
         schedule = new Schedule();
         schedule.setEvent(event);
         schedule.setAuditorium(listAud.get(0));

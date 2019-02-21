@@ -3,7 +3,6 @@ package com.epam.spring.core.dao;
 import java.util.List;
 
 import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 
 public interface UserDAO {
 
@@ -20,9 +19,7 @@ public interface UserDAO {
 	User findByName(String name);
 	
 	List<User> getAll();
-	
-	List<UserAccount> getAllAccount();
-	
+
 	void clear();
 	
 }

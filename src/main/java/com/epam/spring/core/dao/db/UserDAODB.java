@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import com.epam.spring.core.dao.UserDAO;
 import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 import com.epam.spring.core.util.ClassCastUtil;
 
 @Component(value = "UserDAODB")
@@ -47,9 +46,7 @@ public class UserDAODB implements UserDAO {
            + "u.BIRTHDAY  as USER_BIRTHDAY, " 
            + "u.NAME  as USER_NAME, "
            + "u.EMAIL as USER_EMAIL, " 
-           + "u.password  as USER_PASSWORD, "
-           + "u.roles as USER_ROLES " 
-           + "FROM USERS u " 
+           + "FROM USERS u "
            + "left join userACCOUNTs a ON a.user_id = u.id ";
     
 	@Override
@@ -61,8 +58,7 @@ public class UserDAODB implements UserDAO {
     public boolean add(User user) {
         try {
             return (jdbcTemplate.update(ADD_USER, user.getName(), user.getEmail(),
-                    ClassCastUtil.getDateUtilToSQL(user.getBirthday()), user.getPassword(),
-                    user.getRoles().toString()) > 0);
+                    ClassCastUtil.getDateUtilToSQL(user.getBirthday())) > 0);
         } catch (DataAccessException e) {
             return false;
         }
@@ -81,7 +77,7 @@ public class UserDAODB implements UserDAO {
     public boolean update(User user) {
         try {
             return (jdbcTemplate.update(UPDATE_USER, user.getName(), user.getEmail(),
-                    ClassCastUtil.getDateUtilToSQL(user.getBirthday()), user.getPassword(), user.getRoles(),
+                    ClassCastUtil.getDateUtilToSQL(user.getBirthday()),
                     user.getId()) > 0);
         } catch (DataAccessException e) {
             return false;
@@ -124,15 +120,6 @@ public class UserDAODB implements UserDAO {
         }
     }
     
-    @Override
-    public List<UserAccount> getAllAccount() {
-        try {
-            return jdbcTemplate.query(SELECT_ALL_ACCOUNTS, new UserAccountDAODB.UserAccountRowMapper());
-        } catch (DataAccessException e) {
-            return null;
-        }
-    }
-
 	private class UserRowMapper implements RowMapper<User> {
 
 		@Override
@@ -142,8 +129,6 @@ public class UserDAODB implements UserDAO {
 			user.setName(rs.getString("name"));
 			user.setEmail(rs.getString("email"));
 			user.setBirthday(ClassCastUtil.getDateSQLToUtil(rs.getDate("birthday")));
-			user.setPassword(rs.getString("password"));
-			user.setRoles(rs.getString("roles"));
 			return user;
         }
     }

@@ -43,7 +43,6 @@ public class CounterDAODB implements CounterDAO {
     +" e.enddate as event_enddate, "
     +" e.price as event_price, "
     +" e.rating as event_rating, "
-    +" e.ticketprice as event_ticketprice " 
     +" from EVENTCOUNTER c "
     +" inner join events e ON c.event_id=e.id ";
     
@@ -105,7 +104,6 @@ public class CounterDAODB implements CounterDAO {
             event.setStartDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("event_startdate")));
             event.setEndDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("event_enddate")));
             event.setPrice(rs.getInt("event_price"));
-            event.setTicketPrice(rs.getInt("event_ticketprice"));
             event.setRating(Rating.valueOf(rs.getString("event_rating")));
             Counter<Event> counter = new Counter<>();
             counter.setName(rs.getString("name"));

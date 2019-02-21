@@ -14,12 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.epam.spring.advanced.util.WebUtil;
-import com.epam.spring.core.controller.IUserAccountService;
 import com.epam.spring.core.controller.IUserService;
 import com.epam.spring.core.model.Counter;
 import com.epam.spring.core.model.Order;
 import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -40,9 +38,8 @@ public class UsersController {
 	public String add(Model model, @RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("birthday") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
 			@RequestParam("password") String password,
-			@RequestParam("account") int account,
 			@RequestParam("role") String roles) throws UnsupportedEncodingException, NoSuchAlgorithmException {
-		User user = service.add(name, email, birthday, WebUtil.getMd5Password(password), roles, account);
+		User user = service.add(name, email, birthday);
 		if (user != null) {
 			setMainAttributes(model, "Created");
 		} else {
@@ -71,8 +68,6 @@ public class UsersController {
 
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public String getAll(Model model) {
-		List<UserAccount> list = service.getAllAccount();
-		model.addAttribute("userAccs", list);
 		setMainAttributes(model, "OK");
 		return VIEW;
 	}
@@ -85,7 +80,6 @@ public class UsersController {
 	}
 	
 	private Model setMainAttributes(Model model, String status) {
-		model.addAttribute("roles", service.getRoles());
 		return WebUtil.setMainAttributes(model, status);
 	}
 	

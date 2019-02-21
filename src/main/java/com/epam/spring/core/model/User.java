@@ -12,19 +12,13 @@ public class User {
 
 	private Date birthday;
 
-	private String password;
-
-	private String roles;
-
 	public User() {
 	}
 
-	public User(String name, String email, Date birthday, String password, String roles) {
+	public User(String name, String email, Date birthday) {
 		this.name = name;
 		this.email = email;
 		this.birthday = birthday;
-		this.password = password;
-		this.roles = roles;
 	}
 
 	public int getId() {
@@ -59,22 +53,6 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getRoles() {
-		return roles;
-	}
-
-	public void setRoles(String roles) {
-		this.roles = roles;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -82,7 +60,6 @@ public class User {
 		result = prime * result + ((birthday == null) ? 0 : birthday.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
 
@@ -110,18 +87,13 @@ public class User {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
+
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", email=" + email + ", birthday=" + birthday + ", password="
-				+ password + ", roles=" + roles + "]";
+		return "User [id=" + id + ", name=" + name + ", email=" + email + ", birthday=" + birthday + "]";
 	}
 
 

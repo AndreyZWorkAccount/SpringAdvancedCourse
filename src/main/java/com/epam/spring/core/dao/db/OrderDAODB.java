@@ -145,7 +145,6 @@ public class OrderDAODB implements OrderDAO {
             event.setStartDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("event_startdate")));
             event.setEndDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("event_enddate")));
             event.setPrice(rs.getInt("event_price"));
-            event.setTicketPrice(rs.getInt("event_ticketprice"));
             event.setRating(Rating.valueOf(rs.getString("event_rating")));
             User user = new User();
             user.setId(rs.getInt("user_id"));

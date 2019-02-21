@@ -31,7 +31,6 @@ public class AuditoriumController {
 	
 	@RequestMapping(value = "/menu", method = RequestMethod.GET)
 	public String menu(Model model) {
-		WebUtil.setMainAttributes(model,"welcome");
 		return VIEW;
 	}
 	
@@ -47,7 +46,6 @@ public class AuditoriumController {
 				counter++;
 			}
 		}
-		WebUtil.setMainAttributes(model,"uploaded "+counter +" auditoriums");
 		return VIEW;
 	}
      

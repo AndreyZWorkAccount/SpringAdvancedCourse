@@ -12,7 +12,6 @@ public class MainController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String welcomePage(Model model) {
-		WebUtil.setUserInfo(model);
 		return "index";
 	}
 

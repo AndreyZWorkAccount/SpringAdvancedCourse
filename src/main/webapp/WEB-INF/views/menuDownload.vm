@@ -1,6 +1,5 @@
  #parse("/WEB-INF/fragments/_styles.vm")
 <div>
- 	   #parse("/WEB-INF/fragments/_login.vm")
        #parse("/WEB-INF/fragments/_menu.vm")
 </div>
 <div>

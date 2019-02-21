@@ -71,14 +71,6 @@ public class Event {
         this.price = price;
     }
 
-    public int getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public void setTicketPrice(int ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
     public Rating getRating() {
         return rating;
     }

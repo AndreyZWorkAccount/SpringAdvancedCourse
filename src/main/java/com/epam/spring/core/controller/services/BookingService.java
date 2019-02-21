@@ -3,6 +3,7 @@ package com.epam.spring.core.controller.services;
 import java.util.LinkedList;
 import java.util.List;
 
+import com.epam.spring.core.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Propagation;
@@ -13,13 +14,7 @@ import com.epam.spring.core.controller.IDiscountService;
 import com.epam.spring.core.dao.EventDAO;
 import com.epam.spring.core.dao.OrderDAO;
 import com.epam.spring.core.dao.ScheduleDAO;
-import com.epam.spring.core.dao.UserAccountDAO;
 import com.epam.spring.core.dao.UserDAO;
-import com.epam.spring.core.model.Auditorium;
-import com.epam.spring.core.model.Event;
-import com.epam.spring.core.model.Order;
-import com.epam.spring.core.model.User;
-import com.epam.spring.core.model.UserAccount;
 
 public class BookingService implements IBookingService {
 
@@ -42,10 +37,6 @@ public class BookingService implements IBookingService {
     @Autowired
     @Qualifier("UserDAODB")
     UserDAO userDAO;
-
-    @Autowired
-    @Qualifier("UserAccountDAODB")
-    UserAccountDAO userAccountDAO;
 
     public int getTicketPrice(Event event, int seat, User user) {
         Auditorium auditorium = scheduleDAO.findByEventID(event).getAuditorium();
@@ -74,29 +65,11 @@ public class BookingService implements IBookingService {
         if (!orderDAO.getAll().contains(order)) {
                 orderDAO.add(order);
                 System.out.println(orderDAO.getAll());
-                decreaseAccount(order.getUser(), order.getPrice());
-                increasePrice(order.getEvent(), order.getPrice());
-                
                 return true;
-
         }
         return false;
     }
 
-    private boolean decreaseAccount(User user, int price) {
-        UserAccount userAccount = userAccountDAO.findByUser(user);
-        if (userAccount != null) {
-            userAccount.setAccount(userAccount.getAccount() - price);
-            userAccountDAO.update(userAccount);
-            return true;
-        }
-        return false;
-    }
-    
-    private boolean increasePrice(Event event, int price) {
-        event.setTicketPrice(event.getTicketPrice() + price);
-        return eventDAO.update(event);
-    }
 
     public List<Order> getAllOrders() {
         return orderDAO.getAll();

@@ -27,7 +27,5 @@
 	<import resource="resolvers.xml" />
 	<import resource="jdbc_beans.xml" /> 
 	<import resource="core_beans.xml" />
-	<import resource="transactions.xml" />
-	<import resource="security.xml" />
 
 </beans>

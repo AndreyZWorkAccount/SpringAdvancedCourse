@@ -1,6 +1,5 @@
  #parse("/WEB-INF/fragments/_styles.vm")
 <div>
-	 #parse("/WEB-INF/fragments/_login.vm")
        #parse("/WEB-INF/fragments/_menu.vm")
 </div>
 <div>
@@ -33,17 +32,6 @@
     <td>roles</td>
     <td>account</td>
    </tr>
-#foreach($userAcc in $userAccs)
-   <tr>
-  	<td>$userAcc.user.id</td>
-    <td>$userAcc.user.name</td>
-    <td>$userAcc.user.email</td>
-    <td>$userAcc.user.birthday</td>
-    <td>$userAcc.user.password</td>
-    <td>$userAcc.user.roles</td>
-    <td>$userAcc.account</td>
-   </tr>
-#end
 </table>
 <p>
 <a href="./all" class="button">Refresh</a>

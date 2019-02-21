@@ -32,8 +32,6 @@
 		class="com.epam.spring.core.controller.discount.EveryTicketStrategy" />
 
 	<bean id="UserService" class="com.epam.spring.core.controller.services.UserService" />
-	
-	<bean id="UserAccountService" class="com.epam.spring.core.controller.services.UserAccountService" />
 
 	<bean id="CounterService" class="com.epam.spring.core.controller.services.CounterService" />
 

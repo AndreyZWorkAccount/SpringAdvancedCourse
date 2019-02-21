@@ -1,25 +1,7 @@
 <link rel="stylesheet" href="./resources/css/menu.css" type="text/css" /> 
 <link rel="stylesheet" href="./resources/css/buttons.css" type="text/css" /> 
 <link rel="stylesheet" href="./resources/css/table.css" type="text/css" /> 
-<div>
-<table class="login_table">
-	<tr>
-	<td>You login as: $login</td>
-	<td>You role: $login_roles</td>
-	<td>
-	<form action="./login" method="post">
-	  #parse("/WEB-INF/fragments/_token.vm")
-	    <input type="submit" value="login">
-	</form></td>
-	<td>
-	<form action="./logout" method="post">
-	  #parse("/WEB-INF/fragments/_token.vm")
-	    <input type="submit" value="logout">
-	</form>
-	</td>
-	</tr>
-</table>
-</div>
+
 <div>
    <div class="menu">
        <table class="menu_table">

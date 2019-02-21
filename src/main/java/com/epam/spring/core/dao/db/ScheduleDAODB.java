@@ -119,7 +119,6 @@ public class ScheduleDAODB implements ScheduleDAO {
             event.setEndDate(ClassCastUtil.getDateSQLToUtil(rs.getDate("event_enddate")));
             event.setPrice(rs.getInt("event_price"));
             event.setRating(Rating.valueOf(rs.getString("event_rating")));
-            event.setTicketPrice(rs.getInt("event_ticketprice"));
             Auditorium auditorium = new Auditorium();
             auditorium.setId(rs.getInt("auditorium_id"));
             auditorium.setName(rs.getString("auditorium_name"));
