@@ -37,8 +37,7 @@ public class UsersController {
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String add(Model model, @RequestParam("name") String name, @RequestParam("email") String email,
 			@RequestParam("birthday") @DateTimeFormat(pattern = "yyyy-MM-dd") Date birthday,
-			@RequestParam("password") String password,
-			@RequestParam("role") String roles) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+			@RequestParam("password") String password) throws UnsupportedEncodingException, NoSuchAlgorithmException {
 		User user = service.add(name, email, birthday);
 		if (user != null) {
 			setMainAttributes(model, "Created");

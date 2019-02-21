@@ -20,12 +20,12 @@ public class UserDAODB implements UserDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
     
-    private static final String ADD_USER = "INSERT INTO USERS (name, email, birthday, password, roles) VALUES (?,?,?,?,?)";
+    private static final String ADD_USER = "INSERT INTO USERS (name, email, birthday, password) VALUES (?,?,?,?)";
     
     private static final String REMOVE_USER = "DELETE FROM USERS WHERE name=? and email=?";
     
     private static final String UPDATE_USER = "UPDATE  Users "
-            + "SET name=?, email=?, birthday=?, password=?, roles=?"
+            + "SET name=?, email=?, birthday=?, password=?"
             + "WHERE id=?";
     
     private static final String FIND_ID_USER = "SELECT * FROM USERS WHERE id=?";

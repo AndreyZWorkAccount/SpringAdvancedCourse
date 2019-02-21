@@ -11,11 +11,7 @@
   Email: <input type="text" name="email"><p>
   Birthday (date): <input type="date" name="birthday"><p>
   Password : <input type="password" name="password"><p>
-  Role : <select multiple name="role">
-   #foreach($role in $roles)
-   <option value="$role">$role</option>
-   #end
-   </select><p>
+
    #parse("/WEB-INF/fragments/_token.vm")
    Account: <input type="text" name="account"><p>   
   <input type="submit" class="button" value="Submit">
@@ -29,8 +25,6 @@
     <td>email</td>
     <td>birthday</td>
     <td>password</td>
-    <td>roles</td>
-    <td>account</td>
    </tr>
 </table>
 <p>
